@@ -58,12 +58,12 @@ Clone the repository:
 git clone https://github.com/your-username/blue-can-coffee.git
 cd blue-can-coffee
 
-##🌐 Deployment
+## 🌐 Deployment
 
 This project is deployed using Vercel.
 Any push to the connected GitHub branch triggers automatic deployment.
 
-##🧩 Future Enhancements
+## 🧩 Future Enhancements
 
 Google Reviews integration
 
@@ -75,12 +75,12 @@ Contact form with backend support
 
 Progressive Web App (PWA) support
 
-##📄 License
+## 📄 License
 
 This project is for business and educational use.
 All branding and content belong to Blue Can Coffee.
 
-##👤 Author
+## 👤 Author
 
 Developed by Divy and Sahaj
 Frontend & Full-Stack Web Developer
