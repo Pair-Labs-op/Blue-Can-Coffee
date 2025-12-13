@@ -10,9 +10,9 @@ export const LINKS = {
 } as const;
 
 export const BUSINESS_HOURS = {
-  weekdays: '8:00 AM - 11:30 PM',
-  weekends: '8:00 AM - 11:30 PM',
-  display: 'Open Daily: 8 AM - 11:30 PM',
+  weekdays: '9:00 AM - 11:30 PM',
+  weekends: '9:00 AM - 11:30 PM',
+  display: 'Open Daily: 9 AM - 11:30 PM',
 } as const;
 
 export const SITE_INFO = {
