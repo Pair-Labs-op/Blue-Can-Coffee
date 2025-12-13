@@ -9,29 +9,24 @@ import icedLatteImg from '@/assets/iced-latte.jpg';
 import cheesecakeImg from '@/assets/cheesecake.jpg';
 
 /**
- * Normalize image keys to avoid mismatch bugs
+ * Resolve image based on item name (robust & data-safe)
  */
-const normalizeKey = (key?: string) => {
-  if (!key) return '';
+const getImageByName = (name: string): string => {
+  const n = name.toLowerCase();
 
-  return key
-    .toLowerCase()
-    .replace(/\s+/g, '-')   // spaces → dash
-    .replace(/_/g, '-')     // underscores → dash
-    .replace(/--+/g, '-');  // clean duplicates
-};
+  if (n.includes('latte') || n.includes('frappe')) {
+    return icedLatteImg;
+  }
 
-/**
- * Resolve image safely
- */
-const getImage = (rawKey?: string): string => {
-  const key = normalizeKey(rawKey);
+  if (n.includes('cheese') || n.includes('cake')) {
+    return cheesecakeImg;
+  }
 
-  if (key.includes('latte')) return icedLatteImg;
-  if (key.includes('cheese')) return cheesecakeImg;
-  if (key.includes('cappuccino')) return cappuccinoImg;
+  if (n.includes('croissant')) {
+    return cheesecakeImg; // closest visual match
+  }
 
-  return cappuccinoImg; // final fallback
+  return cappuccinoImg; // coffee default
 };
 
 export function FeaturedMenuCards() {
@@ -67,7 +62,7 @@ export function FeaturedMenuCards() {
             >
               <div className="aspect-square overflow-hidden">
                 <img
-                  src={getImage(item.image)}
+                  src={getImageByName(item.name)}
                   alt={item.name}
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                   loading="lazy"
@@ -84,9 +79,7 @@ export function FeaturedMenuCards() {
                 <h3 className="font-semibold text-foreground mb-1 line-clamp-1">
                   {item.name}
                 </h3>
-                <p className="text-primary font-bold">
-                  ₹{item.price}
-                </p>
+                <p className="text-primary font-bold">₹{item.price}</p>
               </div>
             </motion.article>
           ))}
