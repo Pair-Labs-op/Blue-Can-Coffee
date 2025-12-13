@@ -7,26 +7,31 @@ import { FEATURED_ITEMS } from '@/data/menu';
 import cappuccinoImg from '@/assets/cappuccino.jpg';
 import icedLatteImg from '@/assets/iced-latte.jpg';
 import cheesecakeImg from '@/assets/cheesecake.jpg';
+import croissantImg from '@/assets/croissant.jpg';
 
 /**
- * Resolve image based on item name (robust & data-safe)
+ * Resolve image based on item name (explicit + predictable)
  */
 const getImageByName = (name: string): string => {
   const n = name.toLowerCase();
 
+  // Drinks
   if (n.includes('latte') || n.includes('frappe')) {
     return icedLatteImg;
   }
 
+  // Bakery
+  if (n.includes('croissant')) {
+    return croissantImg;
+  }
+
+  // Desserts
   if (n.includes('cheese') || n.includes('cake')) {
     return cheesecakeImg;
   }
 
-  if (n.includes('croissant')) {
-    return cheesecakeImg; // closest visual match
-  }
-
-  return cappuccinoImg; // coffee default
+  // Default coffee
+  return cappuccinoImg;
 };
 
 export function FeaturedMenuCards() {
@@ -79,7 +84,9 @@ export function FeaturedMenuCards() {
                 <h3 className="font-semibold text-foreground mb-1 line-clamp-1">
                   {item.name}
                 </h3>
-                <p className="text-primary font-bold">₹{item.price}</p>
+                <p className="text-primary font-bold">
+                  ₹{item.price}
+                </p>
               </div>
             </motion.article>
           ))}
