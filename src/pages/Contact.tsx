@@ -129,7 +129,7 @@ const Contact = () => {
                         rel="noopener noreferrer"
                         className="text-primary hover:underline"
                       >
-                        @bluecancoffee
+                        @bluecancoffee_india
                       </a>
                       <p className="text-sm text-muted-foreground mt-1">For updates and behind-the-scenes</p>
                     </div>
