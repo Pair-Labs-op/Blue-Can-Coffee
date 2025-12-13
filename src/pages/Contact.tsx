@@ -43,7 +43,7 @@ const Contact = () => {
               >
                 <iframe
                   src={LINKS.mapsEmbed}
-                  width="100%"
+                  width="80%"
                   height="100%"
                   style={{ border: 0, minHeight: '400px' }}
                   allowFullScreen={false}
