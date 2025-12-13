@@ -9,27 +9,29 @@ import icedLatteImg from '@/assets/iced-latte.jpg';
 import cheesecakeImg from '@/assets/cheesecake.jpg';
 
 /**
- * Strict image key type to prevent mismatches
+ * Normalize image keys to avoid mismatch bugs
  */
-type ImageKey = 'cappuccino' | 'iced-latte' | 'cheesecake';
+const normalizeKey = (key?: string) => {
+  if (!key) return '';
 
-/**
- * Image map with guaranteed keys
- */
-const imageMap: Record<ImageKey, string> = {
-  'cappuccino': cappuccinoImg,
-  'iced-latte': icedLatteImg,
-  'cheesecake': cheesecakeImg,
+  return key
+    .toLowerCase()
+    .replace(/\s+/g, '-')   // spaces → dash
+    .replace(/_/g, '-')     // underscores → dash
+    .replace(/--+/g, '-');  // clean duplicates
 };
 
 /**
- * Safe image resolver with fallback
+ * Resolve image safely
  */
-const getImage = (key?: string): string => {
-  if (key && key in imageMap) {
-    return imageMap[key as ImageKey];
-  }
-  return cappuccinoImg; // fallback image
+const getImage = (rawKey?: string): string => {
+  const key = normalizeKey(rawKey);
+
+  if (key.includes('latte')) return icedLatteImg;
+  if (key.includes('cheese')) return cheesecakeImg;
+  if (key.includes('cappuccino')) return cappuccinoImg;
+
+  return cappuccinoImg; // final fallback
 };
 
 export function FeaturedMenuCards() {
@@ -82,7 +84,9 @@ export function FeaturedMenuCards() {
                 <h3 className="font-semibold text-foreground mb-1 line-clamp-1">
                   {item.name}
                 </h3>
-                <p className="text-primary font-bold">₹{item.price}</p>
+                <p className="text-primary font-bold">
+                  ₹{item.price}
+                </p>
               </div>
             </motion.article>
           ))}
