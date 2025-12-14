@@ -97,4 +97,4 @@ If you have suggestions or improvements, feel free to contribute.
 - Make it more **startup / investor-ready**
 - Convert it into a **GitHub-style premium README**
 
-Tell me what level you want: **basic / professional / startup-grade**.
+Tell me what level you want: **basic / professional / startup-grade**
